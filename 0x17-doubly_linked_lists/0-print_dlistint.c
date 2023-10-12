@@ -2,7 +2,7 @@
 
 /**
  * print_dlistint - prints doubly-linked list
- * @h: adresse of head node
+ * @h: address of head node
  *
  * Return: size of list
  */
