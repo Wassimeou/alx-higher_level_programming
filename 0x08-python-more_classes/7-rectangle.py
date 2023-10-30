@@ -1,20 +1,35 @@
 #!/usr/bin/python3
-"""5-rectangle, built for Holberton Python project 0x08 task 5.
+"""7-rectangle, built for Holberton Python project 0x08 task 7.
 """
 
 
 class Rectangle:
-    """Takes in args for width and height of a rectangle, and contains methods
-    for calculation of the area or perimeter.
+    """Class for printing or computation of dimensions of a rectangle.
 
-    __str__, __repr__, and __del__ fuctionality defined below.
+    Takes in args for width and height of a rectangle, and contains methods
+    for calculation of the area or perimeter. __str__, __repr__, and __del__
+    fuctionality defined below.
 
-    Args:
-        width (int): horizontal dimension of rectangle, defaults to 0
-        height (int): vertical dimension of rectangle, defaults to 0
+    Attributes:
+        number_of_instances (int): counter incrementing for every
+            instantiation, and decrementing for every instance deletion.
+        print_symbol (str): single character to be used in assembling string
+            representation of rectangle
 
     """
+    number_of_instances = 0
+    print_symbol = '#'
+
     def __init__(self, width=0, height=0):
+        """Increments `number_of_instances` and calls setters for `__width`
+        and `__height`.
+
+        Args:
+            width (int): horizontal dimension of rectangle, defaults to 0
+            height (int): vertical dimension of rectangle, defaults to 0
+
+        """
+        type(self).number_of_instances += 1
         # attribute assigment here engages setters defined below
         self.width = width
         self.height = height
@@ -99,7 +114,7 @@ class Rectangle:
 
         Returns:
             0 if either attribute is 0, or the perimeter: (__width * 2) +
-            (__height * 2).
+        (__height * 2).
 
         """
         if self.__width is 0 or self.__height is 0:
@@ -118,13 +133,13 @@ class Rectangle:
 
         Returns:
             str (str): string suitable for printing rectangle (final newline
-            omitted)
+                omitted)
 
         """
         str = ""
         for row in range(self.__height):
             for col in range(self.__width):
-                str += '#'
+                str += "{}".format(self.print_symbol)
             if self.__width != 0 and row < (self.__height - 1):
                 str += '\n'
         return str
@@ -148,9 +163,11 @@ class Rectangle:
         """
         return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
 
-    @staticmethod
-    def __del__():
-        """Prints message upon deletion of instance.
+    @classmethod
+    def __del__(cls):
+        """Decrements `number_of_instances`, then prints message upon
+        deletion of instance.
 
         """
+        cls.number_of_instances -= 1
         print('Bye rectangle...')
