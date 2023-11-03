@@ -1,18 +1,25 @@
 #!/usr/bin/python3
-"""
-module add_integer
-a and b arguments
-returns sum of a and b
-"""
+"""Module add_integer"""
 
 
 def add_integer(a, b=98):
-    """
-    add_integer
-    """
-    if type(a) is not int and type(a) is not float:
-        raise TypeError('a must be an integer')
-    if type(b) is not int and type(b) is not float:
-        raise TypeError('b must be an integer')
+    """add_integer.
 
-    return (int(a) + int(b))
+    Args:
+        a: Fisrt number.
+        b: second number.
+
+    Returns:
+        the add of two numbers.
+
+    """
+    if not isinstance(a, (int, float)):
+        raise TypeError('a must be an integer')
+    elif not isinstance(b, (int, float)):
+        raise TypeError('b must be an integer')
+    else:
+        return int(a) + int(b)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testfile("test/0.add_integer.txt")
